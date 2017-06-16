@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <div v-if=" Math.random() >0.5">now you see me</div>
+        <div v-else>u don't see</div>
+
+        <div v-if=" type === 'A' ">A</div>
+        <div v-else-if=" type === 'B' ">B</div>
+        <div v-else-if=" type === 'C' ">C</div>
+        <div v-else>not A/B/C</div>
+
+        <template v-if="loginType === 'username' ">
+            <label>Username</label>
+            <input placeholder="enter your username" key="username-input">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="enter your email address">
+        </template>
+        <button v-on:click="ToggleLogin" key="email-input">Toggle login type</button>
+
+    </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el : "#app",
+        data : {
+            type : 'A',
+            loginType : 'username'
+        },
+        methods : {
+            ToggleLogin : function () {
+                this.loginType = this.loginType == 'username' ? '' : 'username'
+            }
+        }
+    })
+</script>
+</html>

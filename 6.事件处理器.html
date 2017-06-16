@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="ex-1">
+        <button v-on:click="counter += 1">add 1</button>
+        <p>这个按钮被电击了 {{counter}} 次</p>
+    </div>
+
+    <div id="ex-2">
+        <button v-on:click="Green">green</button>
+        <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+
+    </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el : '#ex-1',
+        data : {
+            counter : 0
+        }
+    });
+    var vm2 = new Vue({
+        el : '#ex-2',
+        data : {
+            name : 'vueJs'
+        },
+        methods :  {
+            Green : function (event){
+                // `this` 在方法里指当前 Vue 实例
+                alert('Hello ' + this.name + ' !');
+                alert(event.target.tagName)
+            },
+            warn : function (message, event) {
+                if(event) event.preventDefault();
+                alert(message)
+            }
+        }
+    });
+    // 也可以用 JavaScript 直接调用方法
+    vm2.Green(); // -> 'Hello Vue.js!'
+</script>
+</html>

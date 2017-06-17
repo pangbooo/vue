@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="demo">
+        <child message="hello"></child>
+
+        <!--动态prop-->
+        <div>
+            <input v-model="parentMsg">
+            <br>
+            <child v-bind:message="parentMsg"></child>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+    Vue.component('child', {
+        //声明props
+        props : ['message'],
+        template : '<span>{{ message }}</span>'
+    });
+
+    new Vue({
+        el : '#demo',
+        data : {
+            parentMsg : 'Message from parent'
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="example">
+        <my-component></my-component>
+    </div>
+
+    <div id="example2">
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+    </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+    var data = { counter : 0};
+    //注册
+    Vue.component('my-component', {
+        template : '<div>A coustom component!</div>'
+    });
+    //data必须是函数
+    Vue.component('simple-counter',{
+       template : '<button v-on:click="counter += 1">{{counter}}</button>',
+        data : function () {
+            return data
+        }
+    });
+
+    //创建根实例
+    new Vue({
+        el : '#example'
+    });
+
+    new Vue({
+        el : '#example2'
+    })
+</script>
+</html>

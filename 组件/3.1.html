@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="demo">
+        <child message="hello"></child>
+    </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+    Vue.component('child',{
+        //生命prop
+        props : ['message'],
+        template : '<span>{{message}}</span>'
+    });
+    new Vue({
+        el : '#demo'
+    })
+</script>
+</html>

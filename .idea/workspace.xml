@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93616026-e89f-4691-b86f-5b57f3ff1eb7" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/组件/1.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/组件/2.局部注册.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/组件/3.prop.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vue.iml" afterPath="$PROJECT_DIR$/.idea/vue.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vue.iws" />
@@ -34,21 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="3.prop.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/组件/3.prop.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.290323" vertical-offset="0" max-vertical-offset="858">
-              <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="882">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="855">
+              <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -345,11 +327,26 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="22" max-vertical-offset="154">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="154">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/组件/3.prop.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="858">
           <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -502,16 +499,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/组件/3.prop.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.290323" vertical-offset="0" max-vertical-offset="858">
+        <state vertical-scroll-proportion="0.7773852" vertical-offset="0" max-vertical-offset="858">
           <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="882">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="855">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
           <folding />
         </state>
       </provider>

@@ -3,7 +3,9 @@ var vm = new Vue({
     data : {
         totalMoney : 0,
         productList : [],
-        checkAllFlag : false
+        checkAllFlag : false,
+        delFlag : false,
+        curItem : null
     },
     filters : {
         formatMoney : function(value){
@@ -18,7 +20,7 @@ var vm = new Vue({
             var _this = this;
             this.$http.get('data/cartData.json',{id:'123'}).then(function (res) {
                 _this.productList = res.data.result.list;
-                _this.totalMoney = res.data.result.totalMoney;
+                //_this.totalMoney = res.data.result.totalMoney;
             })
         },
         changeMoney　: function(item,way){
@@ -30,6 +32,7 @@ var vm = new Vue({
                     item.productQuantity = 1
                 }
             }
+            this.calcTotalPrice();
         },
         selectProduct : function(item){
             if( typeof item.checked == 'undefined'){
@@ -38,20 +41,38 @@ var vm = new Vue({
             }else {
                 item.checked = !item.checked
             }
+            this.calcTotalPrice();
         },
         checkAll : function(flag){
             this.checkAllFlag = flag;
             var _this = this;
-            if(this.checkAllFlag){
-                this.productList.forEach(function (value, index) {
-                    if(value.checked == 'undefined'){
-                        _this.$set(value,'checked',flag)
-                    }else {
-                        value.checked = flag
-                    }
-
-                })
-            }
+            this.productList.forEach(function (value, index) {
+                if(typeof value.checked == 'undefined'){
+                    _this.$set(value,'checked',flag)
+                }else {
+                    value.checked = flag
+                }
+            });
+            this.calcTotalPrice();
+        },
+        calcTotalPrice: function () {
+            var _this = this;
+            _this.totalMoney = 0;
+            this.productList.forEach(function (item,index) {
+                if(item.checked){
+                    _this.totalMoney += item.productPrice * item.productQuantity
+                }
+            })
+        },
+        delProduct : function(item){
+            this.curItem = item;
+            this.delFlag = true;
+        },
+        confirmDel : function(){
+            var index = this.productList.indexOf(this.curItem);
+            this.productList.splice(index,1);
+            this.delFlag = false;
+            this.calcTotalPrice();
         }
     }
 });

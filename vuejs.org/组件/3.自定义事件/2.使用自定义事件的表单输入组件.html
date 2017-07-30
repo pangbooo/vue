@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="demo">
+	<currency-input v-model="price"></currency-input>
+</div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el : '#demo',
+	})
+	Vue.component('currency-input', {
+		template : '<span>$<input \
+						ref="input" \
+						:value="value"\
+						@input="updateValue($event.target.value)"/></span>'
+		props : ['value'],
+		methods : {
+			updateValue :  function(value){
+				var formattedValue = value.trim().slice(0, 
+								value.indexOf('.') === -1 ? value.length : value.indexOf('.') + 3);
+
+				  // 如果值不统一，手动覆盖以保持一致
+			      if (formattedValue !== value) {
+			        this.$refs.input.value = formattedValue
+			      }
+			      // 通过 input 事件发出数值
+			      this.$emit('input', Number(formattedValue))
+
+				}
+			}
+	})
+</script>
+</html>

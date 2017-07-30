@@ -23,7 +23,7 @@
         methods : {
             increment : function(){
                 this.counter += 1;
-                this.$emit('increment')
+                this.$emit('increment') //触发父级的组件的自定义事件 increment
             }
         }
     });

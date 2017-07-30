@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="app">
+	 <!-- 路由出口 -->
+ 	 <!-- 路由匹配到的组件将渲染在这里 -->
+	<router-view></router-view>
+</div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script type="text/javascript">
+	const User = {
+		template : '<div>User:  {{$route.params.id}}</div>'
+	}
+
+	const router = new VueRouter({
+		routes : [
+			{ path: '/user/:id', component: User}
+		]
+	})
+
+	const app = new Vue({
+		router
+	}).$mount('#app');
+
+</script>
+</html> 

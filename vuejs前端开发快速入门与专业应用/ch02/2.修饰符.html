@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		<div v-on:click="saySelf('click from inner')" v-on:click.self="saySelf('click from self')">
+			<button v-on:click="saySelf('button click')">button</button>
+			<button v-on:click.stop="saySelf('just button click')">button</button>
+		</div>
+	</div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el : '#app',
+		methods : {
+			saySelf : function(msg) {
+				alert(msg);
+			}
+		}
+	})
+</script>
+</html>

@@ -1,0 +1,8 @@
+1.npm install vue-cli -g （全局安装vue脚手架）
+2.vue init webpack-simple demo （）
+
+3.npm install
+4.npm run dev
+
+第三章-路由
+1.动态路由

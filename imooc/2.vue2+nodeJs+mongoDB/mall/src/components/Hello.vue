@@ -20,24 +20,24 @@
 <script>
 import Counter from './Counter';
 export default {
-  name: 'hello',
-  data () {
-    return {
-      num : '10',
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-  components : {
-    Counter
-  },
-  methods : {
-    increment(){
-      this.num++;
+    name: 'hello',
+    data () {
+      return {
+        num : '10',
+        msg: 'Welcome to Your Vue.js App'
+      }
     },
-    decrement(){
-      this.num--;
+    components : {
+      Counter
+    },
+    methods : {
+      increment(){
+        this.num++;
+      },
+      decrement(){
+        this.num--;
+      }
     }
-  }
 }
 </script>
 

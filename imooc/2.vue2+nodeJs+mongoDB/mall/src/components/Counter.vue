@@ -12,16 +12,17 @@
    props : ['num'],
     data(){
       return {
-        //num : 0
+        // num : 0
       }
     },
     methods : {
       increment(){
-        //this.num++;
+        // this.num++;
         this.$emit('incre');
+        import('./../util'); //未生效
       },
       decrement(){
-        //this.num--;
+        // this.num--;
         this.$emit('decre')
       }
     }

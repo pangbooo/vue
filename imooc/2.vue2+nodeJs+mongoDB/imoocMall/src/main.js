@@ -3,25 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import {sum,minus} from './util'
-// import * as util from './util'
-
+import VueLazyload from 'vue-lazyload'
 Vue.config.productionTip = false
 
-console.log('sum:' + sum(1,2))
-console.log('minus:' + minus(1,2))
-// console.log('sum:' + util.sum(1,2))
-// console.log('minus:' + util.minus(1,2))
-
+Vue.use(VueLazyload,{
+	loading: '/static/loading-svg/loading-balls.svg',
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   template: '<App/>',
   components: { App }
-  //底层渲染方法
-  // render : function(h){
-  // 	return h(App)
-  // }
 })
-// .$mount('#app') // 挂载 

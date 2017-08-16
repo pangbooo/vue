@@ -31,7 +31,7 @@ export default new Router({
     },
     {
       name : 'Hello',
-      path : '/Hello',
+      path : '/',
       component : Hello
     }
   ]

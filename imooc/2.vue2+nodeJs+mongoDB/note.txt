@@ -4,5 +4,5 @@
 3.npm install
 4.npm run dev
 
-第三章-路由
-1.动态路由
+@ 
+webpack.base.conf.js

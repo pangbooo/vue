@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h2>ES6-2Demo 演示</h2>
+<script type="text/javascript">
+	function sum(x,y,z) {
+		let total = 0
+		if(x)total +=x;
+		if(y)total +=y;
+		if(z)total +=z;
+		console.log('total:' + total)
+	}
+	sum(5,'',9);
+
+//rest参数
+	function sum2(...m){ //动态参数
+		let total = 0;
+		for (var i of m) {
+			total += i;
+		}
+		console.log('total:' + total)
+	}
+	sum2(1,23,5);
+
+	// let sum3 = (...m) => item = 1
+	let sum3 = (...m) => {
+		let total = 0;
+		for(var i of m){
+			total += i
+		}
+		console.log('total:' + total)
+	}
+	sum3(1,2,3)
+
+//数组的扩展
+	var [x,y] = [4,8]
+	console.log(...[4,8])
+
+	let arr1=[1,3];
+	let arr2=[2,10,432];
+	console.log([...arr1,...arr2])
+	
+	var [x,...y] = [4,565,77,24,424];
+
+	let [a,b,c] = 'ES6';
+
+	let xy = [..."ES6"]
+
+
+</script>
+</body>
+</html>

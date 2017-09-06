@@ -1,4 +1,4 @@
-1.npm install vue-cli -g （全局安装vue脚手架）
+﻿1.npm install vue-cli -g （全局安装vue脚手架）
 2.vue init webpack-simple demo （）
 
 3.npm install
@@ -6,3 +6,15 @@
 
 @ 
 webpack.base.conf.js
+
+
+//Mongodb
+https://www.imooc.com/article/18438
+
+//使用数据库
+在mongo命令行下
+show dbs
+use 数据库名称
+db.goods.insert({id:101,'name':'iphone6','price':100})
+
+

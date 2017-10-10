@@ -11,7 +11,7 @@
 		    <div class="filter-nav">
 		      <span class="sortby">Sort by:</span>
 		      <a href="javascript:void(0)" class="default cur">Default</a>
-		      <a href="javascript:void(0)" class="price">Price <svg class="icon icon-arrow-short"><use xlink:href="#icon-arrow-short"></use></svg></a>
+		      <a href="javascript:void(0)" class="price" @click="sortGoods()">Price <svg class="icon icon-arrow-short"><use xlink:href="#icon-arrow-short"></use></svg></a>
 		      <a href="javascript:void(0)" class="filterby stopPop" @click="showFilterPop">Filter by</a>
 		    </div>
 		    <div class="accessory-result">
@@ -34,11 +34,11 @@
 		          <ul>
 		            <li v-for="(item,index) in goodsList">
 		              <div class="pic">
-		                <a href="#"><img v-lazy="'/static/'+item.prodcutImg" alt=""></a>
+		                <a href="#"><img v-lazy="'/static/'+item.productImage" alt=""></a>
 		              </div>
 		              <div class="main">
 		                <div class="name">{{item.productName}}</div>
-		                <div class="price">{{item.prodcutPrice}}</div>
+		                <div class="price">{{item.salePrice}}</div>
 		                <div class="btn-area">
 		                  <a href="javascript:;" class="btn btn--m">加入购物车</a>
 		                </div>
@@ -66,6 +66,9 @@
 		data(){
 			return {
 				goodsList : [],
+				sortFlag : true,
+				page : 1,
+				pageSize : 8,
 				priceFilter : [
 					{
 						startPrice : '0.00',
@@ -96,10 +99,22 @@
 		},
 		methods : {
 			getGoodsList(){
-				axios.get('/goods').then((result)=>{
+				var param = {
+					page : this.page,
+					pageSize : this.pageSize,
+					sort : this.sortFlag ? 1 : -1
+				}
+				axios.get('/goods',{
+					params : param
+				}).then((result)=>{
 					var res = result.data;
-					this.goodsList = res.result
+					this.goodsList = res.result.list
 				})
+			},
+			sortGoods(){
+				this.sortFlag = !this.sortFlag;
+				this.page = 1;
+				this.getGoodsList();
 			},
 			setPriceFilter : function(index){
 				this.priceChecked = index;

@@ -20,7 +20,7 @@ db.goods.insert({id:101,'name':'iphone6','price':100})
 1.增 
 	创建数据库 use demo
 	创建集合   db.createCollection('user') || db.user.inset({id:101,'name':'iphone6','price':100})
-	查看集合   show collections
+	
 2.删
 	删除数据库  db.dropDatabase()
 	删除集合    db.user.drop();
@@ -29,7 +29,9 @@ db.goods.insert({id:101,'name':'iphone6','price':100})
 	 db.user.update({'id':1},{$set:{'name':'pangbo'}})
 	 db.user.update({'id':1},{$set:{'class.name':'imooc'}})
 	
-4.查	查看集合数据   db.user.find()
+4.查	
+	查看集合   show collections
+	查看集合数据   db.user.find()
 	查看集合第一个数据 db.user.findOne();
  	条件查询    db.user.find({id:2}）
 		    db.user.find({id:{$gt:2}})

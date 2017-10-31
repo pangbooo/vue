@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+    #tp{height:50px;width:310px;margin：0 auto;list-style:none;}
+    .tps{height:40px;width:60px;float:left;text-align:center;background:#e4393c;line-height:40px;margin-right:1px;    
+    }
+    .container{height:500px;width:600px;background:#ccc;margin:0 auto;}
+    .container ul{list-style:none;height:300px;width:500px;margin:0 auto;}
+    .inner{height:40px;width:59px;float:left;text-align:center;background:#666;line-height:40px;margin-right:1px;
+            margin-top:1px;
+    }
+    .green{background:green;}
+  </style>
+  <script src="https://code.jquery.com/jquery-3.2.1.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <ul id="tp">
+    <li class="tps">关于我</li>
+    <li class="tps">你好</li>
+    <li class="tps">信息</li>
+    <li class="tps">服务</li>
+    <li class="tps">假期</li>
+  </ul>
+
+  <div class="container">
+    <ul>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+        <li class="inner"></li>
+    </ul>
+ </div>
+    <script>
+    $(function(){
+        function Pointer(x,y){
+            this.x = x;
+            this.y = y;
+        }
+        function Position(left,top){
+            this.left = left;
+            this.top = top;
+        }
+        $('.tps').each(function(i){
+            this.init = function(){
+                $(this).attr('index',i);
+                
+                this.drag();
+            }
+            this.moveback = function(callback){
+                $(this).animate({
+                    left:this.pos.left,
+                    top:this.pos.top
+                },500)
+            }
+            this.Check = function(){
+                var currentItem  =  this;
+                var clision = null;
+            
+                var position = [];
+                
+                $('.inner').each(function(){
+                    
+                    const { top, left } = $(this).offset();
+                    position.push({
+                        top:top,
+                        left:left
+                    });
+                    $(this).attr('index',i);
+                    //index.push($(this).index());
+                                            if(    currentItem.pointer.x >$(this).offset().left &&
+                                        currentItem.pointer.y > $(this).offset().top &&
+                                        (currentItem.pointer.x < $(this).offset().left + $(this).width()) &&
+                                        (currentItem.pointer.y < $(this).offset().top + $(this).height())
+                                    ){                                    
+                                        $(this).after($(currentItem));                                    
+                                    }                            
+                })
+                    //console.log(startIndex)
+                    //console.log(endIndex)
+                
+                    console.log(position)
+                
+                
+            }
+            this.add = function(){
+                
+            }
+            this.drag = function(){
+                var oldposition = new Position();
+                var oldpointer = new Pointer();
+                var currentItem  = null;
+                var isDrag = false ;
+                $(this).mousedown(function(e){
+                    e.preventDefault();
+                    oldposition.left = $(this).offset().left;
+                    oldposition.top  = $(this).offset().top;
+                    oldpointer.x = e.clientX;
+                    oldpointer.y = e.clientY;
+                    currentItem = this;
+                    isDrag = true;
+                    
+                    
+                })
+                $(document).mousemove(function(e){
+                    var currentpointer = new Pointer(e.clientX,e.clientY);
+                    if(!isDrag) return false;
+                    $(currentItem).css('opacity',0.7);
+                    var left = currentpointer.x - oldpointer.x + oldposition.left;
+                    var top  = currentpointer.y - oldpointer.y + oldposition.top;
+                    
+                    $(currentItem).css({
+                    position:'absolute',
+                    left : left,
+                    top : top
+                    });
+                    
+                    currentItem.pointer = currentpointer;
+                })
+                $(document).mouseup(function(){
+                    if(!isDrag) return false;
+                    isDrag = false;
+                    $(currentItem).css({
+                    position:'',
+                    
+                    });
+                    /**
+                    currentItem.moveback(function(){
+                        $(this).css({
+                            "opacity" : "1",
+                            "z-index" : 0
+                        });
+                    });
+                    **/
+                    currentItem.Check();
+                })
+    
+            }
+            this.init();
+            
+        })
+            
+            
+    })
+            
+                
+            
+        
+    </script>
+  </div>
+ </body>
+</html>

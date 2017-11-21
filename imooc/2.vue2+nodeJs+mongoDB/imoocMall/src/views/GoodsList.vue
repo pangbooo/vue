@@ -45,6 +45,9 @@
 		              </div>
 		            </li>
 		          </ul>
+		          <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+				  加载更多
+				</div>
 		        </div>
 		      </div>
 		    </div>
@@ -85,7 +88,8 @@
 				],
 				priceChecked : 'all',
 				filterBy : false,
-				overLayFlag : false
+				overLayFlag : false,
+				busy:true,
 			}
 		},
 		components:{
@@ -98,7 +102,9 @@
 			this.getGoodsList();
 		},
 		methods : {
-			getGoodsList(){
+
+			getGoodsList(flag){ 
+				//flag 数据是拼接（true）还是全部加载（false）
 				var param = {
 					page : this.page,
 					pageSize : this.pageSize,
@@ -106,15 +112,37 @@
 				}
 				axios.get('/goods',{
 					params : param
-				}).then((result)=>{
-					var res = result.data;
-					this.goodsList = res.result.list
+				}).then((response)=>{
+					var res = response.data;
+					if (res.status == '0') {
+						if (flag) {
+							this.goodsList = this.goodsList.concat(res.result.list)
+							if (res.result.count==0) {
+								this.busy = true
+							}else{
+								this.busy = false
+							}
+						}else{
+							this.goodsList = res.result.list;
+							this.busy = false;
+						}
+					}else{
+						this.goodsList = [];
+					}
 				})
 			},
 			sortGoods(){
 				this.sortFlag = !this.sortFlag;
 				this.page = 1;
 				this.getGoodsList();
+			},
+			loadMore(){
+				this.busy = true
+				setTimeout(() => {
+					this.page++;
+			        this.getGoodsList(true);
+			        this.busy = false; 
+			    }, 500);
 			},
 			setPriceFilter : function(index){
 				this.priceChecked = index;

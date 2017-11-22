@@ -19,7 +19,7 @@
 		      <div class="filter stopPop" id="filter" :class="{'filterby-show': filterBy}" >
 		        <dl class="filter-price">
 		          <dt>Price:</dt>
-		          <dd><a href="javascript:void(0)" :class="{cur : priceChecked == 'all'}">All</a></dd>
+		          <dd><a href="javascript:void(0)" :class="{cur : priceChecked == 'all'}" @click="setPriceFilter('all')">All</a></dd>
 		          <dd v-for="(price,index) in priceFilter">
 		          <a href="javascript:void(0)" v-bind:class="{cur: priceChecked==index}" @click="setPriceFilter(index)">
 		          	{{price.startPrice}} - {{price.endPrice}}
@@ -46,7 +46,8 @@
 		            </li>
 		          </ul>
 		          <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
-				  加载更多
+				  	<!-- <span v-show='loading'>加载更多</span> -->
+				  	<img src="./../assets/loading-spin.svg" v-show='loading'>
 				</div>
 		        </div>
 		      </div>
@@ -74,22 +75,27 @@
 				pageSize : 8,
 				priceFilter : [
 					{
-						startPrice : '0.00',
+						startPrice : 0.00,
+						endPrice : 100.00
+					},
+					{
+						startPrice : 100.00,
 						endPrice : 500.00,
 					},
 					{
-						startPrice : '500.00',
+						startPrice : 500.00,
 						endPrice : 1000.00
 					},
 					{
-						startPrice : '1000.00',
-						endPrice : 1500.00
+						startPrice : 1000.00,
+						endPrice : 5000.00
 					}
 				],
 				priceChecked : 'all',
 				filterBy : false,
 				overLayFlag : false,
 				busy:true,
+				loading : true
 			}
 		},
 		components:{
@@ -102,17 +108,19 @@
 			this.getGoodsList();
 		},
 		methods : {
-
 			getGoodsList(flag){ 
 				//flag 数据是拼接（true）还是全部加载（false）
 				var param = {
 					page : this.page,
 					pageSize : this.pageSize,
-					sort : this.sortFlag ? 1 : -1
+					sort : this.sortFlag ? 1 : -1,
+					priceLevel : this.priceChecked
 				}
+				this.loading = true;
 				axios.get('/goods',{
 					params : param
 				}).then((response)=>{
+					this.loading = false;
 					var res = response.data;
 					if (res.status == '0') {
 						if (flag) {
@@ -137,15 +145,17 @@
 				this.getGoodsList();
 			},
 			loadMore(){
-				this.busy = true
+				// this.busy = true
 				setTimeout(() => {
 					this.page++;
 			        this.getGoodsList(true);
-			        this.busy = false; 
+			        // this.busy = false; 
 			    }, 500);
 			},
 			setPriceFilter : function(index){
 				this.priceChecked = index;
+				this.page = 1;
+				this.getGoodsList();
 				this.closePop();
 			},
 			showFilterPop : function(){

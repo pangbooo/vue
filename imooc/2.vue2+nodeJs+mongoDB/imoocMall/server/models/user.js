@@ -16,6 +16,6 @@ var userSchema = new mongoose.Schema({
   ],
   addressList : Array
 });
-var Goods = mongoose.model('Good', goodsSchema);
+var User = mongoose.model('User', userSchema);
 
-module.exports = Goods;
+module.exports = User;

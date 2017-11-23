@@ -3,6 +3,7 @@ var router = express.Router();
 var mongo = require('../mongo'); //连接mongoDB
 var Goods = require('../models/goods');
 
+//查询商品列表数据
 router.get('/',function(req,res,next){
   let page = parseInt(req.query.page);
   let pageSize = parseInt(req.query.pageSize);
@@ -46,5 +47,23 @@ router.get('/',function(req,res,next){
 		}
 	})
 });
+//加到购物车
+router.post('/addCart',function(req,res,next){
+  var userId = '100000077';productId =  req.body.productId;
+  var User = require('../moduels/user');
+  User.findOne({userId:userId},function(err,userDoc){
+    if (err) {
+      res.json({
+        status : '1',
+        msg : err.message
+      });
+    }else{
+      console.log(userDoc);
+      if (userDoc) {
 
+      }
+    }
+  })
+
+})
 module.exports = router;

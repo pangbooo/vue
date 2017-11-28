@@ -145,7 +145,7 @@ a {
   text-align: left;
   background: url("/static/icon.png") 0 -100px no-repeat;
 }
-.md-content .error-wrap .error-show{
+.error-wrap .error-show{
   visibility: visible;
   height: auto;
 }

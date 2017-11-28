@@ -20,12 +20,12 @@
 		    <div class="navbar-right-container" style="display: flex;">
 		      <div class="navbar-menu-container">
 		        <!--<a href="/" class="navbar-link">我的账户</a>-->
-		        <span class="navbar-link"></span>
-		        <a href="javascript:void(0)" class="navbar-link">Login</a>
-		        <a href="javascript:void(0)" class="navbar-link">Logout</a>
+		        <span v-text='nickName' v-if='nickName'></span>
+		        <a href="javascript:void(0)" class="navbar-link" v-if="!nickName" @click="loginModalFlag=true">Login</a>
+		        <a href="javascript:void(0)" class="navbar-link" v-if="nickName">Logout</a>
 		        <div class="navbar-cart-container">
 		          <span class="navbar-cart-count"></span>
-		          <a class="navbar-link navbar-cart-link" href="/#/cart">
+		          <a class="navbar-link navbar-cart-link" href="javascript:;">
 		            <svg class="navbar-cart-logo">
 		              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-cart"></use>
 		            </svg>
@@ -34,5 +34,78 @@
 		      </div>
 		    </div>
 		  </div>
+		  <!-- 遮罩层 -->
+		  <div class="md-modal modal-msg md-modal-transition" v-bind:class="{'md-show':loginModalFlag}">
+		  	<div class="md-modal-inner">
+				<div class="md-top">
+					<div class="md-title">Login</div>
+					<button class="md-close" @click="closeLoginModal"></button>
+				</div>				
+				<div class="md-contnet">
+					<div class="confirm-tips">
+						<div class="error-wrap">
+							<span class="error" v-bind:class="{'error-show':errorTip}">用戶名或者密碼錯誤</span>
+						</div>
+						<ul>
+							<li class="regi_form_input">
+								<i class="icon IconPeople"></i>
+								<input type="text" tabindex="1" name="loginname" class="regi_form_input regi_login_input" v-model='userName'/>
+							</li>
+							<li class="regi_form_input">
+								<i class="icon IconPwd"></i>
+								<input type="password" tabindex="2" name="password" class="regi_form_input regi_login_input" v-model='userPwd'/>
+							</li>
+						</ul>
+					</div>
+					<div class="login_wrap">
+						<a href="javascript:;" class="btn-login" @click="login">登录</a>
+					</div>
+				</div>
+			</div>
+		  </div>
+		<div class="md-overlay"v-if="loginModalFlag" @click="closeLoginModal"></div> <!-- @click="closePop" -->
 		</header>
 </template>
+<script type="text/javascript">
+	import './../assets/css/login.css'
+	import axios from 'axios'
+	export default{
+		data(){
+			return{
+				nickName : '',
+				userName:'',
+				userPwd:'',
+				errorTip:false,
+				loginModalFlag : false
+			}
+		},
+		methods:{
+			login(){
+				if (!this.userName || !this.userPwd) {
+					this.errorTip = true;
+					return
+				}
+				axios.post('/users/login',{
+					userName : this.userName,
+					userPwd : this.userPwd
+				}).then((response) =>{
+					let res = response.data;
+					if (res.status = '0') {
+						this.loginModalFlag = false;
+						this.errorTip = false;
+						this.nickName = res.results.userName
+						//to-do
+					}else{
+						this.errorTip = true;
+						this.nickName = ''
+					}
+				});
+			},
+			closeLoginModal(){
+				this.loginModalFlag = false;
+				this.errorTip = false
+
+			}
+		}
+	}
+</script>

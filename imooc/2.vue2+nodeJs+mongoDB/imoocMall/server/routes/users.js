@@ -23,10 +23,12 @@ router.post('/login', function(req, res, next){
 			});
 		}else{
 			if (doc) {
-				/*req.cookie('userId',{
+				res.cookie('userId',doc._doc.userId,{
 					path : '/',
-					maxAge : 60*60*0*1000
-				});*/
+					maxAge : 60*60*1000,
+					httpOnly : true,
+					signed : true
+				});
 				res.json({
 					status : '0',
 					msg : '',
@@ -38,5 +40,15 @@ router.post('/login', function(req, res, next){
 		}
 	})
 
-})
+});
+//登出
+router.post('/logout', function(req, res, next){
+	res.clearCookie('userId');
+	res.json({
+		status : '0',
+		msg: '',
+		results : ''
+
+	})
+});
 module.exports = router;

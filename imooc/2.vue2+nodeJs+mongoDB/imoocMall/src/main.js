@@ -5,12 +5,16 @@ import App from './App'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
 import infiiteScroll from 'vue-infinite-scroll'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
 Vue.config.productionTip = false
 
 Vue.use(VueLazyload,{
 	loading: '/static/loading-svg/loading-balls.svg',
 });
 Vue.use(infiiteScroll);
+Vue.use(ElementUI);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

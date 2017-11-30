@@ -25,6 +25,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(credentials.cookieSecret));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req,res,next){
+	if (req.signedCookies.userId) {
+		next();
+	}else{
+		console.log('url:' + req.originalUrl);
+		if (req.originalUrl == '/users/login') {
+			next();
+		}else{
+			res.json({
+					status : '10001',
+					msg : '当前未登录',
+					results : ''
+				});
+		}
+	}
+});
 app.use('/', index);
 app.use('/users', users);
 app.use('/goods', goods);

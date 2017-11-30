@@ -26,7 +26,7 @@ router.post('/login', function(req, res, next){
 				res.cookie('userId',doc._doc.userId,{
 					path : '/',
 					maxAge : 60*60*1000,
-					httpOnly : true,
+          httpOnly : true,
 					signed : true
 				});
 				res.json({
@@ -50,5 +50,27 @@ router.post('/logout', function(req, res, next){
 		results : ''
 
 	})
+});
+//查询当前用户的购物车数据
+router.get('/cartList', function(req, res, next){
+	var userId =req.signedCookies.userId;
+	User.findOne({userId:userId},function(err,doc){
+		if (err) {
+			res.json({
+				status : '1',
+				msg : err.message,
+        results : ''
+			});
+		}else{
+			if (doc) {
+				res.json({
+					status : '0',
+					msg : '',
+					results : doc.cartList
+				});
+
+			}
+		}
+	});
 });
 module.exports = router;

@@ -53,7 +53,7 @@
 							</li>
 							<li class="regi_form_input">
 								<i class="icon IconPwd"></i>
-								<input type="password" tabindex="2" name="password" class="regi_form_input regi_login_input" v-model='userPwd'/>
+								<input type="password" tabindex="2" name="password" class="regi_form_input regi_login_input" v-model='userPwd' @keyup.enter="login"/>
 							</li>
 						</ul>
 					</div>

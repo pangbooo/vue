@@ -4,7 +4,7 @@ var mongo = require('../mongo'); //连接mongoDB
 var Goods = require('../models/goods');
 
 //查询商品列表数据
-router.get('/',function(req,res,next){
+router.get('/list',function(req,res,next){
   let page = parseInt(req.query.page);
   let pageSize = parseInt(req.query.pageSize);
   let priceLevel = req.query.priceLevel;

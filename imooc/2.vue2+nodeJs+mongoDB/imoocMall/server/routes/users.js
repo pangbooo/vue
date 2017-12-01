@@ -29,6 +29,10 @@ router.post('/login', function(req, res, next){
           httpOnly : true,
 					signed : true
 				});
+				res.cookie('userName',doc._doc.userName,{
+					path : '/',
+					maxAge : 60*60*1000
+				});
 				res.json({
 					status : '0',
 					msg : '',
@@ -44,12 +48,28 @@ router.post('/login', function(req, res, next){
 //登出
 router.post('/logout', function(req, res, next){
 	res.clearCookie('userId');
+	res.clearCookie('userName');
 	res.json({
 		status : '0',
 		msg: '',
 		results : ''
 
 	})
+});
+router.get('/checkLogin', function(req,res,next){
+	if (req.signedCookies.userId) {
+		res.json({
+			status : '0',
+			msg : '',
+			result :req.cookies.userName
+		});
+	}else{
+		res.json({
+			status : '1',
+			msg : '未登录',
+			result : ''
+		});
+	}
 });
 //查询当前用户的购物车数据
 router.get('/cartList', function(req, res, next){

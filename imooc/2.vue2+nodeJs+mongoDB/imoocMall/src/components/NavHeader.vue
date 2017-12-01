@@ -79,7 +79,18 @@
 				loginModalFlag : false
 			}
 		},
+		mounted(){
+			this.checkLogin();
+		},
 		methods:{
+			checkLogin(){
+				axios.get('/users/checkLogin').then((response)=>{
+					let res = response.data;
+					if (res.status == '0') {
+						this.nickName = res.result
+					};
+				});
+			},
 			login(){
 				if (!this.userName || !this.userPwd) {
 					this.errorTip = true;

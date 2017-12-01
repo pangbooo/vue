@@ -26,7 +26,7 @@ router.post('/login', function(req, res, next){
 				res.cookie('userId',doc._doc.userId,{
 					path : '/',
 					maxAge : 60*60*1000,
-          httpOnly : true,
+          			httpOnly : true,
 					signed : true
 				});
 				res.cookie('userName',doc._doc.userName,{
@@ -79,7 +79,7 @@ router.get('/cartList', function(req, res, next){
 			res.json({
 				status : '1',
 				msg : err.message,
-        results : ''
+        		results : ''
 			});
 		}else{
 			if (doc) {

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="md-modal modal-msg md-modal-transition" v-bind:class="{'md-show':mdShow}">
+		<div class="md-modal modal-msg md-modal-transition" v-bind:class="{'md-show': mdShow}">
 		  	<div class="md-modal-inner">
 				<div class="md-top">
 					<button class="md-close" @click="closeLoginModal"></button>
@@ -14,6 +14,7 @@
 					</div>
 			</div>
 		  </div>
+	</div>
 	</div>
 </template>
 

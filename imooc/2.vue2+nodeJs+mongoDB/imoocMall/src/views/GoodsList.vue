@@ -59,16 +59,16 @@
 		  </div>
 		</div>
 		<!-- Modal组件 -->
-		<!-- <modal v-bind:mdShow="mdShow">
+		<modal v-bind:mdShow="mdShow">
 			<p slot='message'>
 				请先登录，否则无法加入到购物车
 			</p>
 			<div slot='btnGroup'>
 				<a class="btn btn-m">关闭</a>
 			</div>
-		</modal> -->
+		</modal>
 		<!-- 遮罩层 -->
-		<div class="md-overlay" v-show="overLayFlag" @click="closePop"></div>
+		<div class="md-overlay" v-show="mdShow" @click="closePop"></div>
 		<nav-footer></nav-footer>
 	</div>
 </template>
@@ -84,7 +84,7 @@
 	import NavHeader from '@/components/NavHeader.vue'
 	import NavFooter from '@/components/NavFooter.vue'
 	import NavBread from '@/components/NavBread.vue'
-	// import Modal from '@/components/Modal.vue'
+	import Modal from '@/components/Modal.vue'
 	import axios from 'axios'
 	import qs from 'qs';
 	export default{
@@ -125,7 +125,7 @@
 			NavHeader,
 			NavFooter,
 			NavBread,
-			// Modal
+			Modal
 		},
 		mounted : function () {
 			this.getGoodsList();

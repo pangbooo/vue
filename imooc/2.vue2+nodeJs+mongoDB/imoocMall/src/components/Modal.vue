@@ -3,7 +3,7 @@
 		<div class="md-modal modal-msg md-modal-transition" v-bind:class="{'md-show': mdShow}">
 		  	<div class="md-modal-inner">
 				<div class="md-top">
-					<button class="md-close" @click="closeLoginModal"></button>
+					<button class="md-close" @click="mdShow = false"></button>
 				</div>				
 				<div class="md-contnet">
 					<div class="confirm-tips">
@@ -12,9 +12,9 @@
 					<div class="btn-wrap">
 						<slot name='btnGroup'></slot>
 					</div>
-			</div>
+				</div>
 		  </div>
-	</div>
+		</div>
 	</div>
 </template>
 

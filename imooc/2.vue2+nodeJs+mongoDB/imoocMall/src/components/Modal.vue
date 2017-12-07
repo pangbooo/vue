@@ -15,6 +15,7 @@
 				</div>
 		  </div>
 		</div>
+		<div class="md-overlay" v-show="mdShow" @click=""></div>
 	</div>
 </template>
 

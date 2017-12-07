@@ -68,7 +68,7 @@
 			</div>
 		</modal>
 		<!-- 遮罩层 -->
-		<div class="md-overlay" v-show="mdShow" @click="closePop"></div>
+		<div class="md-overlay" v-show="overLayFlag" @click="closePop"></div>
 		<nav-footer></nav-footer>
 	</div>
 </template>
@@ -183,8 +183,8 @@
 					if (res.status == '0') {
 						alert('加入成功');
 					}else{
-						alert('msg' + res.msg)
-						// this.mdShow = true
+						//alert('msg' + res.msg)
+						this.mdShow = true
 					}
 				})
 			},

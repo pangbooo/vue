@@ -59,14 +59,25 @@
 		  </div>
 		</div>
 		<!-- Modal组件 -->
-		<modal v-bind:mdShow="mdShow">
+		<modal v-bind:mdShow="mdShow" v-on:close='closeModal'>
 			<p slot='message'>
 				请先登录，否则无法加入到购物车
 			</p>
 			<div slot='btnGroup'>
-				<a class="btn btn-m">关闭</a>
+				<a class="btn btn-m" href="javascript:;" @click='mdShow = false'>关闭</a>
 			</div>
 		</modal>
+
+		<!-- <modal v-bind:mdShow="mdShowCart" v-on:close='closeModal'>
+			<p slot='message'>
+				<span>加入成功</span>
+			</p>
+			<div slot='btnGroup'>
+				<a class="btn btn-m" href="javascript:;" @click='mdShowCart = false'>继续购物</a>
+				<router-link class="btn btn-m" href="javascript:;" to="/cart">查看购物车</router-link>
+			</div>
+		</modal> -->
+
 		<!-- 遮罩层 -->
 		<div class="md-overlay" v-show="overLayFlag" @click="closePop"></div>
 		<nav-footer></nav-footer>
@@ -117,7 +128,8 @@
 				overLayFlag : false,
 				busy:true,
 				loading : true,
-				mdShow : false
+				mdShow : false,
+				mdShowCart : false
 			}
 		},
 		components:{
@@ -181,7 +193,8 @@
 				})).then((response) => {
 					var res = response.data;
 					if (res.status == '0') {
-						alert('加入成功');
+						// alert('加入成功');
+						this.mdShowCart = true
 					}else{
 						//alert('msg' + res.msg)
 						this.mdShow = true
@@ -201,6 +214,9 @@
 			closePop : function(){
 				this.filterBy = false;
 				this.overLayFlag = false
+			},
+			closeModal(){
+				this.mdShow = false;
 			}
 		}
 	}

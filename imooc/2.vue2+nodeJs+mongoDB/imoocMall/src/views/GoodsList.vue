@@ -68,7 +68,7 @@
 			</div>
 		</modal>
 
-		<!-- <modal v-bind:mdShow="mdShowCart" v-on:close='closeModal'>
+		<modal v-bind:mdShow="mdShowCart" v-on:close='closeModal'>
 			<p slot='message'>
 				<span>加入成功</span>
 			</p>
@@ -76,7 +76,7 @@
 				<a class="btn btn-m" href="javascript:;" @click='mdShowCart = false'>继续购物</a>
 				<router-link class="btn btn-m" href="javascript:;" to="/cart">查看购物车</router-link>
 			</div>
-		</modal> -->
+		</modal>
 
 		<!-- 遮罩层 -->
 		<div class="md-overlay" v-show="overLayFlag" @click="closePop"></div>

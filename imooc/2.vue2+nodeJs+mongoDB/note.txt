@@ -7,6 +7,10 @@
 @ 配置
 webpack.base.conf.js
 
+//项目启动
+1.启动mongoDB
+2.启动server （server/bin node www）
+3.vue 
 
 //Mongodb
 https://www.imooc.com/article/18438

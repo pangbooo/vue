@@ -13,7 +13,8 @@ webpack.base.conf.js
 3.vue 
 
 //Mongodb
-https://www.imooc.com/article/18438
+https://www.imooc.com/article/18438(windows)
+https://blog.csdn.net/zongzhankui/article/details/78348396(linux)
 
 //使用数据库
 在mongo命令行下

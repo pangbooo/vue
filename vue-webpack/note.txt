@@ -1,0 +1,54 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+配置webpack 大致流程
+
+1.入口文件
+2.出口文件， html输出模版
+3.管理资源（loader）
+    .js (es6-> babel-loader)
+    .css (postcss, css modules)  ----> now!!!!
+    .vue (vue-loader)
+    ...
+4.eslint, Stylelint
+5.生产环境/开发环境
+6.优化
+    1)tree shaking 
+        .package.json {
+            sideEffects : false/ [...]
+        }
+        UglifyJSPlugin
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Demo
+
+1.针对vue 搭建基础项目
+https://itnext.io/vuejs-and-webpack-4-from-scratch-part-1-94c9c28a534a
+https://itnext.io/vue-js-and-webpack-4-from-scratch-part-2-5038cc9deffb
+
+
+2.Working with Webpack 4, ES6, PostCSS with preset-env
+https://medium.com/@jontorrado/working-with-webpack-4-es6-postcss-with-preset-env-and-more-93b3d77db7b2
+    
+    1)Webpack 4
+    2)ES6 with Babel
+    3)ESLint for JavaScript linting
+    4)PostCSS (with import and preset-env)
+    5)Stylelint for CSS linting
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+环境变量
+
+1)
+process.env.NODE_ENV 
+    定义->   new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify('production')
+            })
+
+2)
+env.NODE_ENV 
+    npm sctipt -> {build: webpack --env.NODE_ENV=local --env.production --progress}
+
+                console.log('NODE_ENV: ', env.NODE_ENV) // 'local'
+                console.log('Production: ', env.production) // true
+
+
+

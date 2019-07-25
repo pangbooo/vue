@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <h1>App!</h1>
+    <h1>App!!!!!!!!!!!!!</h1>
     <TodoList/>
   </div>
 </template>
 
 <script>
 // import '../assets/app.css'
-import TodoList from './components/TodoList.vue'
+import TodoList from '@/components/TodoList.vue'
 export default {
  name: 'app',
  components: {

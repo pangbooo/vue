@@ -1,7 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const webpack = require('webpack')
 module.exports = {
+    mode: 'development', // ==> process.env.NODE_ENV
     entry: './src/index.js',
     output: {
         filename: '[name].bundle.js',
@@ -12,11 +14,11 @@ module.exports = {
         contentBase: './dist',
         hot: true
     },
-    mode: 'development',
+    // devtool: 'eval-source-map',
     resolve: {
         extensions: ['.ts', '.js'],
         alias: {
-            // '@': path.resolve(__dirname, 'src/')
+            '@': path.resolve(__dirname, 'src/')
         }
     },
     module: {
@@ -40,10 +42,6 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                // use: [
-                //     'vue-style-loader',
-                //     'css-loader'
-                // ]
                 oneOf: [
                     {
                         // 这里匹配 `<style module>`
@@ -52,10 +50,15 @@ module.exports = {
                             'vue-style-loader',
                             {
                                 loader: 'css-loader',
-                                options: { modules: { localIdentName: '[path][name]__[local]--[hash:base64:5]' } }
+                                options: { 
+                                    modules: { localIdentName: '[path][name]__[local]--[hash:base64:5]' },
+                                    importLoaders: 1
+                                 },
                                 //开启CSS Modules
                                 //更改css 命名
-                            }
+                                
+                            },
+                            'postcss-loader' // 配置在 postcss.config.js
                         ]
                     },
                     {
@@ -68,7 +71,7 @@ module.exports = {
                                     importLoaders: 1
                                 }
                             },
-                            // 'postcss-loader'
+                            'postcss-loader'
                         ]
                     }
                 ]
@@ -103,6 +106,8 @@ module.exports = {
             inject: true,
             favicon: './public/favicon.ico'
             // meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
-        })
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ]
 }

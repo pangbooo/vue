@@ -25,11 +25,16 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
                 exclude: file => (
                     /node_modules/.test(file) &&
                     !/\.vue\.js/.test(file)
-                )
+                ),
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                      }
+                }
             },
             {
                 test: /\.css$/,

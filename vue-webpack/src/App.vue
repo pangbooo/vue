@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <h1>App!!!!!!!!!!!!!</h1>
-    <TodoList/>
+    <h1>APP</h1>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -9,10 +9,7 @@
 // import '../assets/app.css'
 import TodoList from '@/components/TodoList.vue'
 export default {
- name: 'app',
- components: {
-		TodoList
-	}
+ name: 'app'
 }
 </script>
 
